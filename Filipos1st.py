@@ -26,7 +26,7 @@ mt5.initialize(
 
 # Define the symbol and timeframe for data retrieval
 symbol = "EURUSD"       # EUR/USD symbol
-timeframe = mt5.TIMEFRAME_D1   # Daily timeframe
+timeframe = mt5.TIMEFRAME_M1   # Daily timeframe
 
 # Specify the start and end time for data retrieval
 start_time = datetime.datetime(2022, 1, 1)
@@ -44,6 +44,8 @@ if rates is not None:
     if not df.empty:
         # Convert the timestamp to a human-readable format
         df['time'] = pd.to_datetime(df['time'], unit='s')
+        df.set_index('time', inplace=True)
+        Prices=df['close']
 
         # Print the historical data
         print(df)
